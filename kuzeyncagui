@@ -4,7 +4,7 @@
 
 wait(0.3)
 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-print("   Modern Hub - by kuzeynca")
+print(" Multi-Functional Menu - by kuzeynca")
 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 local Players = game:GetService("Players")
@@ -459,6 +459,7 @@ end
 createScriptCard(scriptsPage, "Infinite Yield", 10, "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 createScriptCard(scriptsPage, "Murder Mystery 2", 90, "https://raw.githubusercontent.com/echelonvanta/Scripts/refs/heads/main/Loader")
 createScriptCard(scriptsPage, "The Strongest Battlegrounds", 170, "https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub")
+createScriptCard(scriptsPage, "99 Nights in the Forest", 250, "https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua")
 
 -- PLAYERS PAGE CONTENT
 local function updatePlayersList()
@@ -609,6 +610,48 @@ gameDesc2.Font = Enum.Font.Gotham
 gameDesc2.TextSize = 13
 gameDesc2.TextXAlignment = Enum.TextXAlignment.Left
 gameDesc2.Parent = gameCard2
+
+-- 99 Nights in the Forest Card
+local gameCard3 = Instance.new("Frame")
+gameCard3.Size = UDim2.new(1, -20, 0, 100)
+gameCard3.Position = UDim2.new(0, 10, 0, 230)
+gameCard3.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+gameCard3.BorderSizePixel = 0
+gameCard3.Parent = gamesPage
+
+local gameCorner3 = Instance.new("UICorner")
+gameCorner3.CornerRadius = UDim.new(0, 12)
+gameCorner3.Parent = gameCard3
+
+local gameIcon3 = Instance.new("TextLabel")
+gameIcon3.Size = UDim2.new(0, 60, 0, 60)
+gameIcon3.Position = UDim2.new(0, 20, 0.5, -30)
+gameIcon3.BackgroundTransparency = 1
+gameIcon3.Text = "🌲"
+gameIcon3.TextSize = 40
+gameIcon3.Parent = gameCard3
+
+local gameName3 = Instance.new("TextLabel")
+gameName3.Size = UDim2.new(1, -110, 0, 30)
+gameName3.Position = UDim2.new(0, 90, 0, 20)
+gameName3.BackgroundTransparency = 1
+gameName3.Text = "99 Nights in the Forest"
+gameName3.TextColor3 = Color3.fromRGB(200, 200, 220)
+gameName3.Font = Enum.Font.GothamBold
+gameName3.TextSize = 18
+gameName3.TextXAlignment = Enum.TextXAlignment.Left
+gameName3.Parent = gameCard3
+
+local gameDesc3 = Instance.new("TextLabel")
+gameDesc3.Size = UDim2.new(1, -110, 0, 25)
+gameDesc3.Position = UDim2.new(0, 90, 0, 50)
+gameDesc3.BackgroundTransparency = 1
+gameDesc3.Text = "Survive 99 terrifying nights"
+gameDesc3.TextColor3 = Color3.fromRGB(120, 120, 140)
+gameDesc3.Font = Enum.Font.Gotham
+gameDesc3.TextSize = 13
+gameDesc3.TextXAlignment = Enum.TextXAlignment.Left
+gameDesc3.Parent = gameCard3
 
 -- SETTINGS PAGE CONTENT
 local settingsTitle = Instance.new("TextLabel")
@@ -873,7 +916,7 @@ closeBtn.MouseButton1Click:Connect(function()
     wait(0.3)
     gui:Destroy()
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("   GUI Closed - by kuzeynca")
+    print("  Menu Closed - by kuzeynca")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 end)
 
@@ -943,7 +986,7 @@ TweenService:Create(main, TweenInfo.new(0.5, Enum.EasingStyle.Back), {
 }):Play()
 
 wait(0.5)
-print("✅ GUI Loaded Successfully!")
+print("✅ Menu Loaded Successfully!")
 print("👤 User: " .. player.Name)
 print("🔑 Toggle Key: " .. toggleKey.Name)
 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
