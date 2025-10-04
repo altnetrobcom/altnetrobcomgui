@@ -344,7 +344,7 @@ statsFrame.BackgroundTransparency = 1
 statsFrame.Parent = homePage
 
 local stats = {
-    {icon = "⚡", label = "Scripts", value = "2"},
+    {icon = "⚡", label = "Scripts", value = "4"},
     {icon = "👥", label = "Players", value = #Players:GetPlayers()},
     {icon = "🎯", label = "Ping", value = math.floor(player:GetNetworkPing()) .. "ms"}
 }
