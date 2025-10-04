@@ -458,6 +458,7 @@ end
 
 createScriptCard(scriptsPage, "Infinite Yield", 10, "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 createScriptCard(scriptsPage, "Murder Mystery 2", 90, "https://raw.githubusercontent.com/echelonvanta/Scripts/refs/heads/main/Loader")
+createScriptCard(scriptsPage, "The Strongest Battlegrounds", 170, "https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub")
 
 -- PLAYERS PAGE CONTENT
 local function updatePlayersList()
@@ -526,46 +527,88 @@ local function updatePlayersList()
 end
 
 -- GAMES PAGE CONTENT
-local gameCard = Instance.new("Frame")
-gameCard.Size = UDim2.new(1, -20, 0, 100)
-gameCard.Position = UDim2.new(0, 10, 0, 10)
-gameCard.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
-gameCard.BorderSizePixel = 0
-gameCard.Parent = gamesPage
+local gameCard1 = Instance.new("Frame")
+gameCard1.Size = UDim2.new(1, -20, 0, 100)
+gameCard1.Position = UDim2.new(0, 10, 0, 10)
+gameCard1.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+gameCard1.BorderSizePixel = 0
+gameCard1.Parent = gamesPage
 
-local gameCorner = Instance.new("UICorner")
-gameCorner.CornerRadius = UDim.new(0, 12)
-gameCorner.Parent = gameCard
+local gameCorner1 = Instance.new("UICorner")
+gameCorner1.CornerRadius = UDim.new(0, 12)
+gameCorner1.Parent = gameCard1
 
-local gameIcon = Instance.new("TextLabel")
-gameIcon.Size = UDim2.new(0, 60, 0, 60)
-gameIcon.Position = UDim2.new(0, 20, 0.5, -30)
-gameIcon.BackgroundTransparency = 1
-gameIcon.Text = "🔫"
-gameIcon.TextSize = 40
-gameIcon.Parent = gameCard
+local gameIcon1 = Instance.new("TextLabel")
+gameIcon1.Size = UDim2.new(0, 60, 0, 60)
+gameIcon1.Position = UDim2.new(0, 20, 0.5, -30)
+gameIcon1.BackgroundTransparency = 1
+gameIcon1.Text = "🔫"
+gameIcon1.TextSize = 40
+gameIcon1.Parent = gameCard1
 
-local gameName = Instance.new("TextLabel")
-gameName.Size = UDim2.new(1, -110, 0, 30)
-gameName.Position = UDim2.new(0, 90, 0, 20)
-gameName.BackgroundTransparency = 1
-gameName.Text = "Murder Mystery 2"
-gameName.TextColor3 = Color3.fromRGB(200, 200, 220)
-gameName.Font = Enum.Font.GothamBold
-gameName.TextSize = 18
-gameName.TextXAlignment = Enum.TextXAlignment.Left
-gameName.Parent = gameCard
+local gameName1 = Instance.new("TextLabel")
+gameName1.Size = UDim2.new(1, -110, 0, 30)
+gameName1.Position = UDim2.new(0, 90, 0, 20)
+gameName1.BackgroundTransparency = 1
+gameName1.Text = "Murder Mystery 2"
+gameName1.TextColor3 = Color3.fromRGB(200, 200, 220)
+gameName1.Font = Enum.Font.GothamBold
+gameName1.TextSize = 18
+gameName1.TextXAlignment = Enum.TextXAlignment.Left
+gameName1.Parent = gameCard1
 
-local gameDesc = Instance.new("TextLabel")
-gameDesc.Size = UDim2.new(1, -110, 0, 25)
-gameDesc.Position = UDim2.new(0, 90, 0, 50)
-gameDesc.BackgroundTransparency = 1
-gameDesc.Text = "Popular mystery game"
-gameDesc.TextColor3 = Color3.fromRGB(120, 120, 140)
-gameDesc.Font = Enum.Font.Gotham
-gameDesc.TextSize = 13
-gameDesc.TextXAlignment = Enum.TextXAlignment.Left
-gameDesc.Parent = gameCard
+local gameDesc1 = Instance.new("TextLabel")
+gameDesc1.Size = UDim2.new(1, -110, 0, 25)
+gameDesc1.Position = UDim2.new(0, 90, 0, 50)
+gameDesc1.BackgroundTransparency = 1
+gameDesc1.Text = "Popular mystery game"
+gameDesc1.TextColor3 = Color3.fromRGB(120, 120, 140)
+gameDesc1.Font = Enum.Font.Gotham
+gameDesc1.TextSize = 13
+gameDesc1.TextXAlignment = Enum.TextXAlignment.Left
+gameDesc1.Parent = gameCard1
+
+-- The Strongest Battlegrounds Card
+local gameCard2 = Instance.new("Frame")
+gameCard2.Size = UDim2.new(1, -20, 0, 100)
+gameCard2.Position = UDim2.new(0, 10, 0, 120)
+gameCard2.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+gameCard2.BorderSizePixel = 0
+gameCard2.Parent = gamesPage
+
+local gameCorner2 = Instance.new("UICorner")
+gameCorner2.CornerRadius = UDim.new(0, 12)
+gameCorner2.Parent = gameCard2
+
+local gameIcon2 = Instance.new("TextLabel")
+gameIcon2.Size = UDim2.new(0, 60, 0, 60)
+gameIcon2.Position = UDim2.new(0, 20, 0.5, -30)
+gameIcon2.BackgroundTransparency = 1
+gameIcon2.Text = "🥊"
+gameIcon2.TextSize = 40
+gameIcon2.Parent = gameCard2
+
+local gameName2 = Instance.new("TextLabel")
+gameName2.Size = UDim2.new(1, -110, 0, 30)
+gameName2.Position = UDim2.new(0, 90, 0, 20)
+gameName2.BackgroundTransparency = 1
+gameName2.Text = "The Strongest Battlegrounds"
+gameName2.TextColor3 = Color3.fromRGB(200, 200, 220)
+gameName2.Font = Enum.Font.GothamBold
+gameName2.TextSize = 18
+gameName2.TextXAlignment = Enum.TextXAlignment.Left
+gameName2.Parent = gameCard2
+
+local gameDesc2 = Instance.new("TextLabel")
+gameDesc2.Size = UDim2.new(1, -110, 0, 25)
+gameDesc2.Position = UDim2.new(0, 90, 0, 50)
+gameDesc2.BackgroundTransparency = 1
+gameDesc2.Text = "Epic fighting game"
+gameDesc2.TextColor3 = Color3.fromRGB(120, 120, 140)
+gameDesc2.Font = Enum.Font.Gotham
+gameDesc2.TextSize = 13
+gameDesc2.TextXAlignment = Enum.TextXAlignment.Left
+gameDesc2.Parent = gameCard2
 
 -- SETTINGS PAGE CONTENT
 local settingsTitle = Instance.new("TextLabel")
