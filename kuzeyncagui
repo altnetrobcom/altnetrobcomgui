@@ -1,0 +1,906 @@
+-- Modern Hub
+-- Created by kuzeynca
+-- Version 1.0
+
+wait(0.3)
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+print("   Modern Hub - by kuzeynca")
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+-- Toggle Key (varsayılan RightShift)
+local toggleKey = Enum.KeyCode.RightShift
+
+-- Temizlik
+for _, v in pairs(PlayerGui:GetChildren()) do
+    if v.Name == "ModernGUI_kuzeynca" then
+        v:Destroy()
+    end
+end
+
+-- Ana GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "ModernGUI_kuzeynca"
+gui.ResetOnSpawn = false
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+gui.Parent = PlayerGui
+
+-- Ana Container
+local main = Instance.new("Frame")
+main.Name = "MainContainer"
+main.Size = UDim2.new(0, 850, 0, 550)
+main.Position = UDim2.new(0.5, -425, 0.5, -275)
+main.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+main.BorderSizePixel = 0
+main.Active = true
+main.Draggable = true
+main.ClipsDescendants = true
+main.Parent = gui
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 16)
+mainCorner.Parent = main
+
+-- Gradient Background
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 25, 30)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 15, 20))
+}
+gradient.Rotation = 45
+gradient.Parent = main
+
+-- Glow Effect
+local glow = Instance.new("ImageLabel")
+glow.Name = "Glow"
+glow.Size = UDim2.new(1, 50, 1, 50)
+glow.Position = UDim2.new(0, -25, 0, -25)
+glow.BackgroundTransparency = 1
+glow.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+glow.ImageColor3 = Color3.fromRGB(100, 150, 255)
+glow.ImageTransparency = 0.7
+glow.ZIndex = 0
+glow.Parent = main
+
+-- Top Header Bar
+local header = Instance.new("Frame")
+header.Name = "Header"
+header.Size = UDim2.new(1, 0, 0, 70)
+header.BackgroundColor3 = Color3.fromRGB(18, 18, 23)
+header.BorderSizePixel = 0
+header.Parent = main
+
+local headerCorner = Instance.new("UICorner")
+headerCorner.CornerRadius = UDim.new(0, 16)
+headerCorner.Parent = header
+
+local headerFix = Instance.new("Frame")
+headerFix.Size = UDim2.new(1, 0, 0, 35)
+headerFix.Position = UDim2.new(0, 0, 1, -35)
+headerFix.BackgroundColor3 = Color3.fromRGB(18, 18, 23)
+headerFix.BorderSizePixel = 0
+headerFix.Parent = header
+
+-- Logo/Title
+local title = Instance.new("TextLabel")
+title.Name = "Title"
+title.Size = UDim2.new(0, 300, 1, 0)
+title.Position = UDim2.new(0, 25, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "⚡ MODERN HUB"
+title.TextColor3 = Color3.fromRGB(100, 180, 255)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 24
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = header
+
+-- by kuzeynca kredisi
+local credit = Instance.new("TextLabel")
+credit.Name = "Credit"
+credit.Size = UDim2.new(0, 200, 0, 20)
+credit.Position = UDim2.new(0, 25, 0, 45)
+credit.BackgroundTransparency = 1
+credit.Text = "by kuzeynca"
+credit.TextColor3 = Color3.fromRGB(120, 120, 140)
+credit.Font = Enum.Font.Gotham
+credit.TextSize = 12
+credit.TextXAlignment = Enum.TextXAlignment.Left
+credit.Parent = header
+
+-- Minimize Button
+local minimizeBtn = Instance.new("TextButton")
+minimizeBtn.Name = "Minimize"
+minimizeBtn.Size = UDim2.new(0, 45, 0, 45)
+minimizeBtn.Position = UDim2.new(1, -110, 0, 13)
+minimizeBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+minimizeBtn.Text = "_"
+minimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+minimizeBtn.Font = Enum.Font.GothamBold
+minimizeBtn.TextSize = 20
+minimizeBtn.Parent = header
+
+local minCorner = Instance.new("UICorner")
+minCorner.CornerRadius = UDim.new(0, 10)
+minCorner.Parent = minimizeBtn
+
+-- Close Button
+local closeBtn = Instance.new("TextButton")
+closeBtn.Name = "Close"
+closeBtn.Size = UDim2.new(0, 45, 0, 45)
+closeBtn.Position = UDim2.new(1, -55, 0, 13)
+closeBtn.BackgroundColor3 = Color3.fromRGB(255, 70, 70)
+closeBtn.Text = "×"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.TextSize = 26
+closeBtn.Parent = header
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 10)
+closeCorner.Parent = closeBtn
+
+-- Sidebar
+local sidebar = Instance.new("Frame")
+sidebar.Name = "Sidebar"
+sidebar.Size = UDim2.new(0, 220, 1, -90)
+sidebar.Position = UDim2.new(0, 15, 0, 80)
+sidebar.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+sidebar.BorderSizePixel = 0
+sidebar.Parent = main
+
+local sidebarCorner = Instance.new("UICorner")
+sidebarCorner.CornerRadius = UDim.new(0, 12)
+sidebarCorner.Parent = sidebar
+
+-- Sidebar Title
+local sidebarTitle = Instance.new("TextLabel")
+sidebarTitle.Size = UDim2.new(1, 0, 0, 40)
+sidebarTitle.Position = UDim2.new(0, 0, 0, 10)
+sidebarTitle.BackgroundTransparency = 1
+sidebarTitle.Text = "MENU"
+sidebarTitle.TextColor3 = Color3.fromRGB(180, 180, 200)
+sidebarTitle.Font = Enum.Font.GothamBold
+sidebarTitle.TextSize = 14
+sidebarTitle.Parent = sidebar
+
+-- Main Content Area
+local content = Instance.new("Frame")
+content.Name = "Content"
+content.Size = UDim2.new(1, -255, 1, -90)
+content.Position = UDim2.new(0, 240, 0, 80)
+content.BackgroundTransparency = 1
+content.Parent = main
+
+-- Content Pages
+local pages = {}
+
+-- Home Page
+local homePage = Instance.new("ScrollingFrame")
+homePage.Name = "HomePage"
+homePage.Size = UDim2.new(1, 0, 1, 0)
+homePage.BackgroundTransparency = 1
+homePage.BorderSizePixel = 0
+homePage.ScrollBarThickness = 6
+homePage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 255)
+homePage.Visible = true
+homePage.Parent = content
+pages["Home"] = homePage
+
+-- Scripts Page
+local scriptsPage = Instance.new("ScrollingFrame")
+scriptsPage.Name = "ScriptsPage"
+scriptsPage.Size = UDim2.new(1, 0, 1, 0)
+scriptsPage.BackgroundTransparency = 1
+scriptsPage.BorderSizePixel = 0
+scriptsPage.ScrollBarThickness = 6
+scriptsPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 255)
+scriptsPage.CanvasSize = UDim2.new(0, 0, 0, 400)
+scriptsPage.Visible = false
+scriptsPage.Parent = content
+pages["Scripts"] = scriptsPage
+
+-- Players Page
+local playersPage = Instance.new("ScrollingFrame")
+playersPage.Name = "PlayersPage"
+playersPage.Size = UDim2.new(1, 0, 1, 0)
+playersPage.BackgroundTransparency = 1
+playersPage.BorderSizePixel = 0
+playersPage.ScrollBarThickness = 6
+playersPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 255)
+playersPage.CanvasSize = UDim2.new(0, 0, 0, 1000)
+playersPage.Visible = false
+playersPage.Parent = content
+pages["Player"] = playersPage
+
+-- Games Page
+local gamesPage = Instance.new("ScrollingFrame")
+gamesPage.Name = "GamesPage"
+gamesPage.Size = UDim2.new(1, 0, 1, 0)
+gamesPage.BackgroundTransparency = 1
+gamesPage.BorderSizePixel = 0
+gamesPage.ScrollBarThickness = 6
+gamesPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 255)
+gamesPage.CanvasSize = UDim2.new(0, 0, 0, 400)
+gamesPage.Visible = false
+gamesPage.Parent = content
+pages["Games"] = gamesPage
+
+-- Settings Page
+local settingsPage = Instance.new("ScrollingFrame")
+settingsPage.Name = "SettingsPage"
+settingsPage.Size = UDim2.new(1, 0, 1, 0)
+settingsPage.BackgroundTransparency = 1
+settingsPage.BorderSizePixel = 0
+settingsPage.ScrollBarThickness = 6
+settingsPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 255)
+settingsPage.CanvasSize = UDim2.new(0, 0, 0, 300)
+settingsPage.Visible = false
+settingsPage.Parent = content
+pages["Settings"] = settingsPage
+
+-- Info Page
+local infoPage = Instance.new("Frame")
+infoPage.Name = "InfoPage"
+infoPage.Size = UDim2.new(1, 0, 1, 0)
+infoPage.BackgroundTransparency = 1
+infoPage.Visible = false
+infoPage.Parent = content
+pages["Info"] = infoPage
+
+-- HOME PAGE CONTENT
+local welcomeCard = Instance.new("Frame")
+welcomeCard.Name = "WelcomeCard"
+welcomeCard.Size = UDim2.new(1, -20, 0, 150)
+welcomeCard.Position = UDim2.new(0, 10, 0, 10)
+welcomeCard.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+welcomeCard.BorderSizePixel = 0
+welcomeCard.Parent = homePage
+
+local welcomeCorner = Instance.new("UICorner")
+welcomeCorner.CornerRadius = UDim.new(0, 12)
+welcomeCorner.Parent = welcomeCard
+
+local welcomeGradient = Instance.new("UIGradient")
+welcomeGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(100, 150, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 100, 255))
+}
+welcomeGradient.Rotation = 45
+welcomeGradient.Parent = welcomeCard
+
+local avatarFrame = Instance.new("Frame")
+avatarFrame.Size = UDim2.new(0, 80, 0, 80)
+avatarFrame.Position = UDim2.new(0, 25, 0, 35)
+avatarFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+avatarFrame.BorderSizePixel = 0
+avatarFrame.Parent = welcomeCard
+
+local avatarCorner = Instance.new("UICorner")
+avatarCorner.CornerRadius = UDim.new(1, 0)
+avatarCorner.Parent = avatarFrame
+
+local avatarImg = Instance.new("ImageLabel")
+avatarImg.Size = UDim2.new(1, -4, 1, -4)
+avatarImg.Position = UDim2.new(0, 2, 0, 2)
+avatarImg.BackgroundTransparency = 1
+avatarImg.Parent = avatarFrame
+
+local avatarImgCorner = Instance.new("UICorner")
+avatarImgCorner.CornerRadius = UDim.new(1, 0)
+avatarImgCorner.Parent = avatarImg
+
+spawn(function()
+    wait(0.2)
+    local success, result = pcall(function()
+        return Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size150x150)
+    end)
+    if success then
+        avatarImg.Image = result
+    end
+end)
+
+local welcomeText = Instance.new("TextLabel")
+welcomeText.Size = UDim2.new(1, -130, 0, 35)
+welcomeText.Position = UDim2.new(0, 120, 0, 35)
+welcomeText.BackgroundTransparency = 1
+welcomeText.Text = "Welcome back!"
+welcomeText.TextColor3 = Color3.fromRGB(255, 255, 255)
+welcomeText.Font = Enum.Font.GothamBold
+welcomeText.TextSize = 22
+welcomeText.TextXAlignment = Enum.TextXAlignment.Left
+welcomeText.Parent = welcomeCard
+
+local usernameText = Instance.new("TextLabel")
+usernameText.Size = UDim2.new(1, -130, 0, 30)
+usernameText.Position = UDim2.new(0, 120, 0, 65)
+usernameText.BackgroundTransparency = 1
+usernameText.Text = player.DisplayName .. " (@" .. player.Name .. ")"
+usernameText.TextColor3 = Color3.fromRGB(240, 240, 255)
+usernameText.Font = Enum.Font.Gotham
+usernameText.TextSize = 15
+usernameText.TextXAlignment = Enum.TextXAlignment.Left
+usernameText.Parent = welcomeCard
+
+local timeText = Instance.new("TextLabel")
+timeText.Size = UDim2.new(1, -130, 0, 25)
+timeText.Position = UDim2.new(0, 120, 0, 95)
+timeText.BackgroundTransparency = 1
+timeText.Text = "🕐 " .. os.date("%H:%M:%S")
+timeText.TextColor3 = Color3.fromRGB(220, 220, 240)
+timeText.Font = Enum.Font.Gotham
+timeText.TextSize = 13
+timeText.TextXAlignment = Enum.TextXAlignment.Left
+timeText.Parent = welcomeCard
+
+local statsFrame = Instance.new("Frame")
+statsFrame.Size = UDim2.new(1, -20, 0, 90)
+statsFrame.Position = UDim2.new(0, 10, 0, 170)
+statsFrame.BackgroundTransparency = 1
+statsFrame.Parent = homePage
+
+local stats = {
+    {icon = "⚡", label = "Scripts", value = "2"},
+    {icon = "👥", label = "Players", value = #Players:GetPlayers()},
+    {icon = "🎯", label = "Ping", value = math.floor(player:GetNetworkPing()) .. "ms"}
+}
+
+for i, stat in ipairs(stats) do
+    local card = Instance.new("Frame")
+    card.Size = UDim2.new(0.32, -7, 1, 0)
+    card.Position = UDim2.new((i-1) * 0.34, 0, 0, 0)
+    card.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+    card.BorderSizePixel = 0
+    card.Parent = statsFrame
+    
+    local cardCorner = Instance.new("UICorner")
+    cardCorner.CornerRadius = UDim.new(0, 10)
+    cardCorner.Parent = card
+    
+    local iconLabel = Instance.new("TextLabel")
+    iconLabel.Size = UDim2.new(1, 0, 0, 35)
+    iconLabel.Position = UDim2.new(0, 0, 0, 10)
+    iconLabel.BackgroundTransparency = 1
+    iconLabel.Text = stat.icon
+    iconLabel.TextSize = 24
+    iconLabel.Parent = card
+    
+    local valueLabel = Instance.new("TextLabel")
+    valueLabel.Size = UDim2.new(1, 0, 0, 25)
+    valueLabel.Position = UDim2.new(0, 0, 0, 40)
+    valueLabel.BackgroundTransparency = 1
+    valueLabel.Text = stat.value
+    valueLabel.TextColor3 = Color3.fromRGB(100, 180, 255)
+    valueLabel.Font = Enum.Font.GothamBold
+    valueLabel.TextSize = 18
+    valueLabel.Parent = card
+    
+    local labelLabel = Instance.new("TextLabel")
+    labelLabel.Size = UDim2.new(1, 0, 0, 20)
+    labelLabel.Position = UDim2.new(0, 0, 0, 65)
+    labelLabel.BackgroundTransparency = 1
+    labelLabel.Text = stat.label
+    labelLabel.TextColor3 = Color3.fromRGB(150, 150, 170)
+    labelLabel.Font = Enum.Font.Gotham
+    labelLabel.TextSize = 12
+    labelLabel.Parent = card
+end
+
+-- SCRIPTS PAGE CONTENT
+local function createScriptCard(parent, name, yPos, scriptUrl)
+    local card = Instance.new("Frame")
+    card.Size = UDim2.new(1, -20, 0, 70)
+    card.Position = UDim2.new(0, 10, 0, yPos)
+    card.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+    card.BorderSizePixel = 0
+    card.Parent = parent
+    
+    local cardCorner = Instance.new("UICorner")
+    cardCorner.CornerRadius = UDim.new(0, 10)
+    cardCorner.Parent = card
+    
+    local scriptName = Instance.new("TextLabel")
+    scriptName.Size = UDim2.new(1, -130, 1, 0)
+    scriptName.Position = UDim2.new(0, 20, 0, 0)
+    scriptName.BackgroundTransparency = 1
+    scriptName.Text = "📜 " .. name
+    scriptName.TextColor3 = Color3.fromRGB(200, 200, 220)
+    scriptName.Font = Enum.Font.GothamBold
+    scriptName.TextSize = 16
+    scriptName.TextXAlignment = Enum.TextXAlignment.Left
+    scriptName.Parent = card
+    
+    local execBtn = Instance.new("TextButton")
+    execBtn.Size = UDim2.new(0, 100, 0, 40)
+    execBtn.Position = UDim2.new(1, -110, 0.5, -20)
+    execBtn.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+    execBtn.Text = "Execute"
+    execBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    execBtn.Font = Enum.Font.GothamBold
+    execBtn.TextSize = 14
+    execBtn.Parent = card
+    
+    local execCorner = Instance.new("UICorner")
+    execCorner.CornerRadius = UDim.new(0, 8)
+    execCorner.Parent = execBtn
+    
+    execBtn.MouseEnter:Connect(function()
+        TweenService:Create(execBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(120, 170, 255)}):Play()
+    end)
+    
+    execBtn.MouseLeave:Connect(function()
+        TweenService:Create(execBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(100, 150, 255)}):Play()
+    end)
+    
+    execBtn.MouseButton1Click:Connect(function()
+        execBtn.Text = "Loading..."
+        spawn(function()
+            local success, err = pcall(function()
+                loadstring(game:HttpGet(scriptUrl))()
+            end)
+            wait(0.5)
+            if success then
+                execBtn.Text = "✓ Loaded"
+                print("✅ " .. name .. " executed!")
+            else
+                execBtn.Text = "✗ Error"
+                warn("❌ " .. name .. " failed: " .. tostring(err))
+            end
+            wait(2)
+            execBtn.Text = "Execute"
+        end)
+    end)
+end
+
+createScriptCard(scriptsPage, "Infinite Yield", 10, "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
+createScriptCard(scriptsPage, "Murder Mystery 2", 90, "https://raw.githubusercontent.com/echelonvanta/Scripts/refs/heads/main/Loader")
+
+-- PLAYERS PAGE CONTENT
+local function updatePlayersList()
+    for _, child in pairs(playersPage:GetChildren()) do
+        child:Destroy()
+    end
+    
+    local yPos = 10
+    for i, plr in pairs(Players:GetPlayers()) do
+        local playerCard = Instance.new("Frame")
+        playerCard.Size = UDim2.new(1, -20, 0, 60)
+        playerCard.Position = UDim2.new(0, 10, 0, yPos)
+        playerCard.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+        playerCard.BorderSizePixel = 0
+        playerCard.Parent = playersPage
+        
+        local playerCorner = Instance.new("UICorner")
+        playerCorner.CornerRadius = UDim.new(0, 10)
+        playerCorner.Parent = playerCard
+        
+        local playerAvatar = Instance.new("ImageLabel")
+        playerAvatar.Size = UDim2.new(0, 40, 0, 40)
+        playerAvatar.Position = UDim2.new(0, 10, 0.5, -20)
+        playerAvatar.BackgroundTransparency = 1
+        playerAvatar.Parent = playerCard
+        
+        local playerAvatarCorner = Instance.new("UICorner")
+        playerAvatarCorner.CornerRadius = UDim.new(1, 0)
+        playerAvatarCorner.Parent = playerAvatar
+        
+        spawn(function()
+            local success, result = pcall(function()
+                return Players:GetUserThumbnailAsync(plr.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size150x150)
+            end)
+            if success then
+                playerAvatar.Image = result
+            end
+        end)
+        
+        local playerName = Instance.new("TextLabel")
+        playerName.Size = UDim2.new(1, -70, 0, 25)
+        playerName.Position = UDim2.new(0, 60, 0, 10)
+        playerName.BackgroundTransparency = 1
+        playerName.Text = plr.DisplayName
+        playerName.TextColor3 = Color3.fromRGB(200, 200, 220)
+        playerName.Font = Enum.Font.GothamBold
+        playerName.TextSize = 15
+        playerName.TextXAlignment = Enum.TextXAlignment.Left
+        playerName.Parent = playerCard
+        
+        local playerUsername = Instance.new("TextLabel")
+        playerUsername.Size = UDim2.new(1, -70, 0, 20)
+        playerUsername.Position = UDim2.new(0, 60, 0, 30)
+        playerUsername.BackgroundTransparency = 1
+        playerUsername.Text = "@" .. plr.Name
+        playerUsername.TextColor3 = Color3.fromRGB(120, 120, 140)
+        playerUsername.Font = Enum.Font.Gotham
+        playerUsername.TextSize = 12
+        playerUsername.TextXAlignment = Enum.TextXAlignment.Left
+        playerUsername.Parent = playerCard
+        
+        yPos = yPos + 70
+    end
+    
+    playersPage.CanvasSize = UDim2.new(0, 0, 0, yPos + 10)
+end
+
+-- GAMES PAGE CONTENT
+local gameCard = Instance.new("Frame")
+gameCard.Size = UDim2.new(1, -20, 0, 100)
+gameCard.Position = UDim2.new(0, 10, 0, 10)
+gameCard.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+gameCard.BorderSizePixel = 0
+gameCard.Parent = gamesPage
+
+local gameCorner = Instance.new("UICorner")
+gameCorner.CornerRadius = UDim.new(0, 12)
+gameCorner.Parent = gameCard
+
+local gameIcon = Instance.new("TextLabel")
+gameIcon.Size = UDim2.new(0, 60, 0, 60)
+gameIcon.Position = UDim2.new(0, 20, 0.5, -30)
+gameIcon.BackgroundTransparency = 1
+gameIcon.Text = "🔫"
+gameIcon.TextSize = 40
+gameIcon.Parent = gameCard
+
+local gameName = Instance.new("TextLabel")
+gameName.Size = UDim2.new(1, -110, 0, 30)
+gameName.Position = UDim2.new(0, 90, 0, 20)
+gameName.BackgroundTransparency = 1
+gameName.Text = "Murder Mystery 2"
+gameName.TextColor3 = Color3.fromRGB(200, 200, 220)
+gameName.Font = Enum.Font.GothamBold
+gameName.TextSize = 18
+gameName.TextXAlignment = Enum.TextXAlignment.Left
+gameName.Parent = gameCard
+
+local gameDesc = Instance.new("TextLabel")
+gameDesc.Size = UDim2.new(1, -110, 0, 25)
+gameDesc.Position = UDim2.new(0, 90, 0, 50)
+gameDesc.BackgroundTransparency = 1
+gameDesc.Text = "Popular mystery game"
+gameDesc.TextColor3 = Color3.fromRGB(120, 120, 140)
+gameDesc.Font = Enum.Font.Gotham
+gameDesc.TextSize = 13
+gameDesc.TextXAlignment = Enum.TextXAlignment.Left
+gameDesc.Parent = gameCard
+
+-- SETTINGS PAGE CONTENT
+local settingsTitle = Instance.new("TextLabel")
+settingsTitle.Size = UDim2.new(1, -20, 0, 40)
+settingsTitle.Position = UDim2.new(0, 10, 0, 10)
+settingsTitle.BackgroundTransparency = 1
+settingsTitle.Text = "⚙️ Settings"
+settingsTitle.TextColor3 = Color3.fromRGB(100, 180, 255)
+settingsTitle.Font = Enum.Font.GothamBold
+settingsTitle.TextSize = 22
+settingsTitle.TextXAlignment = Enum.TextXAlignment.Left
+settingsTitle.Parent = settingsPage
+
+local toggleKeyCard = Instance.new("Frame")
+toggleKeyCard.Size = UDim2.new(1, -20, 0, 100)
+toggleKeyCard.Position = UDim2.new(0, 10, 0, 60)
+toggleKeyCard.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+toggleKeyCard.BorderSizePixel = 0
+toggleKeyCard.Parent = settingsPage
+
+local toggleKeyCorner = Instance.new("UICorner")
+toggleKeyCorner.CornerRadius = UDim.new(0, 10)
+toggleKeyCorner.Parent = toggleKeyCard
+
+local toggleKeyLabel = Instance.new("TextLabel")
+toggleKeyLabel.Size = UDim2.new(1, -40, 0, 30)
+toggleKeyLabel.Position = UDim2.new(0, 20, 0, 15)
+toggleKeyLabel.BackgroundTransparency = 1
+toggleKeyLabel.Text = "Toggle GUI Key"
+toggleKeyLabel.TextColor3 = Color3.fromRGB(200, 200, 220)
+toggleKeyLabel.Font = Enum.Font.GothamBold
+toggleKeyLabel.TextSize = 16
+toggleKeyLabel.TextXAlignment = Enum.TextXAlignment.Left
+toggleKeyLabel.Parent = toggleKeyCard
+
+local currentKeyLabel = Instance.new("TextLabel")
+currentKeyLabel.Size = UDim2.new(1, -40, 0, 25)
+currentKeyLabel.Position = UDim2.new(0, 20, 0, 45)
+currentKeyLabel.BackgroundTransparency = 1
+currentKeyLabel.Text = "Current: RightShift"
+currentKeyLabel.TextColor3 = Color3.fromRGB(120, 120, 140)
+currentKeyLabel.Font = Enum.Font.Gotham
+currentKeyLabel.TextSize = 13
+currentKeyLabel.TextXAlignment = Enum.TextXAlignment.Left
+currentKeyLabel.Parent = toggleKeyCard
+
+local changeKeyBtn = Instance.new("TextButton")
+changeKeyBtn.Size = UDim2.new(0, 120, 0, 35)
+changeKeyBtn.Position = UDim2.new(1, -130, 0.5, -17.5)
+changeKeyBtn.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+changeKeyBtn.Text = "Change Key"
+changeKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+changeKeyBtn.Font = Enum.Font.GothamBold
+changeKeyBtn.TextSize = 13
+changeKeyBtn.Parent = toggleKeyCard
+
+local changeKeyCorner = Instance.new("UICorner")
+changeKeyCorner.CornerRadius = UDim.new(0, 8)
+changeKeyCorner.Parent = changeKeyBtn
+
+local waitingForKey = false
+changeKeyBtn.MouseButton1Click:Connect(function()
+    if not waitingForKey then
+        waitingForKey = true
+        changeKeyBtn.Text = "Press a key..."
+        changeKeyBtn.BackgroundColor3 = Color3.fromRGB(255, 150, 50)
+        
+        local connection
+        connection = UserInputService.InputBegan:Connect(function(input, gameProcessed)
+            if not gameProcessed and input.UserInputType == Enum.UserInputType.Keyboard then
+                toggleKey = input.KeyCode
+                currentKeyLabel.Text = "Current: " .. input.KeyCode.Name
+                changeKeyBtn.Text = "✓ Changed"
+                changeKeyBtn.BackgroundColor3 = Color3.fromRGB(50, 255, 100)
+                waitingForKey = false
+                connection:Disconnect()
+                
+                wait(1)
+                changeKeyBtn.Text = "Change Key"
+                changeKeyBtn.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+                print("✅ Toggle key changed to: " .. input.KeyCode.Name)
+            end
+        end)
+    end
+end)
+
+-- INFO PAGE CONTENT
+local infoContainer = Instance.new("Frame")
+infoContainer.Size = UDim2.new(1, -40, 1, -40)
+infoContainer.Position = UDim2.new(0, 20, 0, 20)
+infoContainer.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+infoContainer.BorderSizePixel = 0
+infoContainer.Parent = infoPage
+
+local infoCorner = Instance.new("UICorner")
+infoCorner.CornerRadius = UDim.new(0, 12)
+infoCorner.Parent = infoContainer
+
+local infoGradient = Instance.new("UIGradient")
+infoGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(100, 150, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 100, 255))
+}
+infoGradient.Rotation = 45
+infoGradient.Parent = infoContainer
+
+local designedBy = Instance.new("TextLabel")
+designedBy.Size = UDim2.new(1, 0, 0, 80)
+designedBy.Position = UDim2.new(0, 0, 0.5, -40)
+designedBy.BackgroundTransparency = 1
+designedBy.Text = "Designed by kuzeynca"
+designedBy.TextColor3 = Color3.fromRGB(255, 255, 255)
+designedBy.Font = Enum.Font.GothamBold
+designedBy.TextSize = 32
+designedBy.Parent = infoContainer
+
+local infoSubtext = Instance.new("TextLabel")
+infoSubtext.Size = UDim2.new(1, 0, 0, 30)
+infoSubtext.Position = UDim2.new(0, 0, 0.5, 40)
+infoSubtext.BackgroundTransparency = 1
+infoSubtext.Text = "Modern Hub v1.0 - Made with ❤️"
+infoSubtext.TextColor3 = Color3.fromRGB(240, 240, 255)
+infoSubtext.Font = Enum.Font.Gotham
+infoSubtext.TextSize = 16
+infoSubtext.Parent = infoContainer
+
+local infoIcon = Instance.new("TextLabel")
+infoIcon.Size = UDim2.new(1, 0, 0, 60)
+infoIcon.Position = UDim2.new(0, 0, 0.5, -120)
+infoIcon.BackgroundTransparency = 1
+infoIcon.Text = "✨"
+infoIcon.TextSize = 50
+infoIcon.Parent = infoContainer
+
+-- Menu Buttons
+local menuButtons = {
+    {icon = "🏠", text = "Home", page = "Home"},
+    {icon = "⚡", text = "Scripts", page = "Scripts"},
+    {icon = "👤", text = "Player", page = "Player"},
+    {icon = "🎮", text = "Games", page = "Games"},
+    {icon = "⚙️", text = "Settings", page = "Settings"},
+    {icon = "ℹ️", text = "Info", page = "Info"}
+}
+
+local activeButton = nil
+local buttonY = 60
+
+for i, btnData in ipairs(menuButtons) do
+    local btn = Instance.new("TextButton")
+    btn.Name = "MenuBtn" .. i
+    btn.Size = UDim2.new(1, -20, 0, 45)
+    btn.Position = UDim2.new(0, 10, 0, buttonY)
+    btn.BackgroundColor3 = (i == 1) and Color3.fromRGB(100, 150, 255) or Color3.fromRGB(30, 30, 38)
+    btn.BorderSizePixel = 0
+    btn.Text = ""
+    btn.AutoButtonColor = false
+    btn.Parent = sidebar
+    
+    if i == 1 then
+        activeButton = btn
+    end
+    
+    local btnCorner = Instance.new("UICorner")
+    btnCorner.CornerRadius = UDim.new(0, 10)
+    btnCorner.Parent = btn
+    
+    local icon = Instance.new("TextLabel")
+    icon.Size = UDim2.new(0, 35, 1, 0)
+    icon.Position = UDim2.new(0, 10, 0, 0)
+    icon.BackgroundTransparency = 1
+    icon.Text = btnData.icon
+    icon.TextSize = 20
+    icon.Parent = btn
+    
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, -50, 1, 0)
+    label.Position = UDim2.new(0, 45, 0, 0)
+    label.BackgroundTransparency = 1
+    label.Text = btnData.text
+    label.TextColor3 = (i == 1) and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(150, 150, 170)
+    label.Font = Enum.Font.GothamBold
+    label.TextSize = 14
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Parent = btn
+    
+    btn.MouseEnter:Connect(function()
+        if btn ~= activeButton then
+            TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(40, 40, 48)}):Play()
+        end
+    end)
+    
+    btn.MouseLeave:Connect(function()
+        if btn ~= activeButton then
+            TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 38)}):Play()
+        end
+    end)
+    
+    btn.MouseButton1Click:Connect(function()
+        -- Deactivate old button
+        if activeButton then
+            TweenService:Create(activeButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 38)}):Play()
+            for _, child in pairs(activeButton:GetChildren()) do
+                if child:IsA("TextLabel") and child.Name ~= "Icon" then
+                    child.TextColor3 = Color3.fromRGB(150, 150, 170)
+                end
+            end
+        end
+        
+        -- Activate new button
+        activeButton = btn
+        TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(100, 150, 255)}):Play()
+        label.TextColor3 = Color3.fromRGB(255, 255, 255)
+        
+        -- Hide all pages
+        for _, page in pairs(pages) do
+            page.Visible = false
+        end
+        
+        -- Show selected page
+        if pages[btnData.page] then
+            pages[btnData.page].Visible = true
+            
+            -- Update players list when Players page is opened
+            if btnData.page == "Player" then
+                updatePlayersList()
+            end
+        end
+        
+        print("📄 Switched to: " .. btnData.text)
+    end)
+    
+    buttonY = buttonY + 55
+end
+
+-- Footer
+local footer = Instance.new("Frame")
+footer.Name = "Footer"
+footer.Size = UDim2.new(1, -255, 0, 35)
+footer.Position = UDim2.new(0, 240, 1, -45)
+footer.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
+footer.BorderSizePixel = 0
+footer.Parent = main
+
+local footerCorner = Instance.new("UICorner")
+footerCorner.CornerRadius = UDim.new(0, 10)
+footerCorner.Parent = footer
+
+local footerText = Instance.new("TextLabel")
+footerText.Size = UDim2.new(1, -20, 1, 0)
+footerText.Position = UDim2.new(0, 10, 0, 0)
+footerText.BackgroundTransparency = 1
+footerText.Text = "💎 Modern Hub v1.0 - Created by kuzeynca"
+footerText.TextColor3 = Color3.fromRGB(100, 180, 255)
+footerText.Font = Enum.Font.GothamBold
+footerText.TextSize = 13
+footerText.TextXAlignment = Enum.TextXAlignment.Left
+footerText.Parent = footer
+
+-- Close Button Function
+closeBtn.MouseButton1Click:Connect(function()
+    TweenService:Create(main, TweenInfo.new(0.3), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+    wait(0.3)
+    gui:Destroy()
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    print("   GUI Closed - by kuzeynca")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+end)
+
+-- Minimize Function
+local minimized = false
+minimizeBtn.MouseButton1Click:Connect(function()
+    if not minimized then
+        TweenService:Create(main, TweenInfo.new(0.3), {Size = UDim2.new(0, 850, 0, 70)}):Play()
+        minimizeBtn.Text = "□"
+        minimized = true
+    else
+        TweenService:Create(main, TweenInfo.new(0.3), {Size = UDim2.new(0, 850, 0, 550)}):Play()
+        minimizeBtn.Text = "_"
+        minimized = false
+    end
+end)
+
+-- Toggle GUI Visibility
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == toggleKey then
+        main.Visible = not main.Visible
+        print("👁️ GUI " .. (main.Visible and "shown" or "hidden"))
+    end
+end)
+
+-- Button Hover Effects
+local function addHover(btn, normal, hover)
+    btn.MouseEnter:Connect(function()
+        TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = hover}):Play()
+    end)
+    btn.MouseLeave:Connect(function()
+        TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = normal}):Play()
+    end)
+end
+
+addHover(closeBtn, Color3.fromRGB(255, 70, 70), Color3.fromRGB(255, 100, 100))
+addHover(minimizeBtn, Color3.fromRGB(60, 60, 70), Color3.fromRGB(80, 80, 90))
+
+-- Time Update
+spawn(function()
+    while wait(1) do
+        if timeText and timeText.Parent then
+            timeText.Text = "🕐 " .. os.date("%H:%M:%S")
+        else
+            break
+        end
+    end
+end)
+
+-- Player Join/Leave Updates
+Players.PlayerAdded:Connect(function()
+    if pages["Player"].Visible then
+        updatePlayersList()
+    end
+end)
+
+Players.PlayerRemoving:Connect(function()
+    if pages["Player"].Visible then
+        updatePlayersList()
+    end
+end)
+
+-- Opening Animation
+main.Size = UDim2.new(0, 0, 0, 0)
+TweenService:Create(main, TweenInfo.new(0.5, Enum.EasingStyle.Back), {
+    Size = UDim2.new(0, 850, 0, 550)
+}):Play()
+
+wait(0.5)
+print("✅ GUI Loaded Successfully!")
+print("👤 User: " .. player.Name)
+print("🔑 Toggle Key: " .. toggleKey.Name)
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
